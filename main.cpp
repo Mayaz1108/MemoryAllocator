@@ -21,7 +21,11 @@ int main() {
         allocator.dump_heap();
 
         allocator.deallocate(p2);
-        std::cout << "\nAfter deallocating second block (p2) - Blocks should merge:" << std::endl;
+        std::cout << "\nAfter deallocating second block (p2) :" << std::endl;
+        allocator.dump_heap();
+
+        void* p3 = allocator.allocate(700);
+        std::cout << "\nAfter allocating third block (p3), blocks should merge :" << std::endl;
         allocator.dump_heap();
 
     } catch (const std::exception& e) {

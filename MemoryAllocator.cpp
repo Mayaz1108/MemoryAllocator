@@ -99,6 +99,11 @@ void MemoryAllocator::deallocate(void* ptr) {
         reinterpret_cast<Block*>(
             reinterpret_cast<uint8_t*>(ptr) - sizeof(Block)
         );
+    
+    if (block->is_free) {
+        std::cerr << "Pointer was already freed\n";
+        std::abort();
+    }
 
     block->is_free = true;
 }
